@@ -1,0 +1,42 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ahmet <ahmet@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/03/13 14:52:00 by ahmet             #+#    #+#              #
+#    Updated: 2026/03/13 14:52:00 by ahmet            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME	= libftprintf.a
+
+CC		= cc
+CFLAGS	= -Wall -Wextra -Werror
+
+SRCS	= ft_printf.c \
+		  ft_print_char.c \
+		  ft_print_nbr.c \
+		  ft_print_hex.c \
+		  ft_print_unsigned.c
+
+OBJS	= $(SRCS:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
+
+%.o: %.c ft_printf.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

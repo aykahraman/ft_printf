@@ -1,0 +1,4 @@
+*.o
+*.a
+test_ftprintf
+.DS_Store
