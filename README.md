@@ -61,7 +61,7 @@ Every `write()` call is checked. If any write fails (`-1`), the error propagates
 ### Compilation
 
 ```bash
-make        # Builds libftprintf.a
+make        # Builds libftprintf.a and .o files
 make clean  # Removes object files
 make fclean # Removes object files and the library
 make re     # Full recompile
