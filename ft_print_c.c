@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*   ft_print_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akahrama <akahrama@student.42.com.tr>      +#+  +:+       +#+        */
+/*   By: akahrama <akahrama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 14:52:00 by ahmet             #+#    #+#             */
-/*   Updated: 2026/03/13 15:49:35 by akahrama         ###   ########.fr       */
+/*   Updated: 2026/03/15 00:16:24 by akahrama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void ft_putunbr_recursive(unsigned int n, int *len)
+int	ft_print_c(char c)
 {
-	if (*len < 0)
-		return;
-	if (n >= 10)
-		ft_putunbr_recursive(n / 10, len);
-	if (*len < 0)
-		return;
-	if (ft_print_char('0' + (n % 10)) == -1)
-		*len = -1;
-	else
-		(*len)++;
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (1);
 }
 
-int ft_print_unsigned(unsigned int n)
+int	ft_print_str(char *s)
 {
-	int len;
+	int	len;
 
+	if (!s)
+		s = "(null)";
 	len = 0;
-	ft_putunbr_recursive(n, &len);
+	while (s[len])
+		len++;
+	if (write(1, s, len) == -1)
+		return (-1);
 	return (len);
 }

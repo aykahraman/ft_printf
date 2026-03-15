@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ft_print_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akahrama <akahrama@student.42.com.tr>      +#+  +:+       +#+        */
+/*   By: akahrama <akahrama@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 14:52:00 by ahmet             #+#    #+#             */
-/*   Updated: 2026/03/13 15:49:22 by akahrama         ###   ########.fr       */
+/*   Updated: 2026/03/15 00:15:48 by akahrama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_print_char(char c)
+static void	ft_putnbru(unsigned int n, int *len)
 {
-	if (write(1, &c, 1) == -1)
-		return (-1);
-	return (1);
+	if (*len < 0)
+		return ;
+	if (n >= 10)
+		ft_putnbru(n / 10, len);
+	if (*len < 0)
+		return ;
+	if (ft_print_c('0' + (n % 10)) == -1)
+		*len = -1;
+	else
+		(*len)++;
 }
 
-int ft_print_str(char *s)
+int	ft_print_u(unsigned int n)
 {
-	int len;
+	int	len;
 
-	if (!s)
-		s = "(null)";
 	len = 0;
-	while (s[len])
-		len++;
-	if (write(1, s, len) == -1)
-		return (-1);
+	ft_putnbru(n, &len);
 	return (len);
 }

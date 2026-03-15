@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akahrama <akahrama@student.42.com.tr>      +#+  +:+       +#+         #
+#    By: akahrama <akahrama@student.42istanbul.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/13 14:52:00 by ahmet             #+#    #+#              #
-#    Updated: 2026/03/13 15:49:35 by akahrama         ###   ########.fr        #
+#    Updated: 2026/03/15 00:17:52 by akahrama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 
 SRCS	= ft_printf.c \
-		  ft_print_char.c \
+		  ft_print_c.c \
 		  ft_print_nbr.c \
 		  ft_print_hex.c \
-		  ft_print_unsigned.c
+		  ft_print_u.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -34,9 +34,11 @@ $(NAME): $(OBJS)
 clean:
 	rm -f $(OBJS)
 
-fclean: clean
-	rm -f $(NAME)
+fclean:
+	rm -f $(NAME) $(OBJS)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+ac: fclean all clean
+
+.PHONY: all clean fclean re ac
